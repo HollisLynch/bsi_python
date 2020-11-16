@@ -1,19 +1,18 @@
 import math
 
-print("Enter Cumulative Fault Frequency:")
-cff = float(input())
-print("Enter Magnitude of life:")
-t = float(input())
+# Theories of Weibull Distribution
+print("--  Parameters  --")
+print("Enter Expected Minimum:")
+x = float(input())
+print("Enter Slope of Weibull distribution:")
+slope_weibull = float(input())
+print("Enter Characteristic life:")
+charact_life = float(input())
 
-def find_r (cff):
-    r = math.exp(-cff)
-    r = str(round(r*100, 3))
-    r_percents = r + "%"
-    print(f"R = {r_percents}")
+def find_weibull (x, slope_weibull, charact_life):
+    weibull = 1 - math.exp(- math.pow((x/charact_life), slope_weibull))
+    weibull = str(round(weibull*100, 5))
+    weibull_percents = weibull + "%"
+    print(f"F(x) = {weibull_percents}")
 
-def find_mtbf (cff, t):
-    mmbf = t/cff
-    print(f"MMBF = {mmbf} Miles/fault during {t} miles")
-
-find_r(cff)
-find_mtbf(cff, t)
+find_weibull(x, slope_weibull, charact_life)
