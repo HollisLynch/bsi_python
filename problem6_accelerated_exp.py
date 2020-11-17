@@ -8,20 +8,25 @@ def find_test_duration (x, n, pn, fx, b):
     w_3 = math.pow(w_1/w_2, 1/b)
     w_4 = w_3*x
 
-    duration = str(round(w_4*0.001, 2))
-    duration_hours = duration + "hours"
+    duration = str(math.floor(w_4*0.001))
+    duration_hours = duration + " hours"
     print(f"T = {duration_hours}")
 
 print("--  Parameters  --")
-print("Enter X:")
+print("Enter goal life (x):")
 x = float(input())
-print("Enter n:")
+
+print("Enter number of samples (n):")
 n = float(input())
-print("Enter Pn:")
+
+print("Enter confidence level (Pn):")
 pn = float(input())
-print("Enter f(x):")
-fx = float(input())
-print("Enter b:")
+
+print("Enter Weibull Slope (b):")
 b = float(input())
+
+print("Enter reliability level (F(x)):")
+fx = float(input())
+fx = 1 - fx
 
 find_test_duration(x, n, pn, fx, b)
