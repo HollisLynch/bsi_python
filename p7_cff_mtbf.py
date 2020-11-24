@@ -27,9 +27,9 @@ def calc_cff(r):
             print("Cumulative Fault Frequency (CFF): ", round(cff, 3))
         else:
             print(" Reliability must be more than 0")
+        return cff
     except ArithmeticError:
         print("Argument must be more 0.0 and up to 1.0")
-    return cff
 
 
 # function calculates Mean Time Between Failure (MTBF)
@@ -37,11 +37,11 @@ def calc_mtbf(t, cff):
     try:
         mtbf = t / cff
         print("Mean Time Between Failure (MTBF): ", round(mtbf, 3))
+        return mtbf
     except ZeroDivisionError:
         print("You cannot divide by zero.")
     except ArithmeticError:
         print("Argument must be more 0.0 and up to 1.0")
-    return mtbf
 
 
 rel, t = enter_r_t()
