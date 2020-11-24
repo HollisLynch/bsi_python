@@ -24,11 +24,12 @@ def calc_n(c, rc):
     try:
         n = math.log10(1 - c) / math.log10(rc) - 1
         print("Sample size (n): ", math.floor(n))
+        return n
     except ZeroDivisionError:
         print("You cannot divide by zero.")
     except ArithmeticError:
         print("Argument must be more 0.0 and up to 1.0")
-    return n
+    
 
 
 conf, rel = enter_c_rc()
