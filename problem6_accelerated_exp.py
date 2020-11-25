@@ -3,48 +3,57 @@ import math
 # Daryna Kovyrina
 # QITTO3 p.9
 # Accelerated Experiments for Components
+
+# p.10, example 2.1
 def find_test_duration (x, n, pn, fx, b):
+    try:
+        w_1 = (1 / n) * (math.log(1 / (1 - pn)))
+        w_2 = math.log(1 / (1 - fx))
+        w_3 = math.pow(w_1 / w_2, 1 / b)
+        w_4 = w_3 * x
 
-    w_1 = (1/n) * (math.log(1/(1-pn)))
-    w_2 = math.log(1/(1-fx))
-    w_3 = math.pow(w_1/w_2, 1/b)
-    w_4 = w_3*x
+        duration = str(math.floor(w_4))
+        duration_hours = duration + " hours"
+        print(f"T = {duration_hours}")
+        return duration
+    except ArithmeticError:
+        print("ArithmeticError: attempted to divide by zero or number is too large to represent.")
+    except ValueError:
+        print("ValueError: received an inappropriate value.")
 
-    duration = str(math.floor(w_4*0.001))
-    duration_hours = duration + " hours"
-    print(f"T = {duration_hours}")
 
+# example 3.1
 def find_confidence (x, b, charact_life):
 
-    fx = 1 - math.e(-math.pow(x/charact_life), b)
+    fx = 1 - math.e(-math.pow(x/charact_life, b))
 
     fx = str(round(fx, 5))
     fx_perecent = fx + " %"
-    print(f"Confidence = {fx_perecent}")
-
+    print(fx_perecent)
+    return fx
 
 def find_characteristic (x, b, n, pn, t):
+    try:
+        fr_1 = math.pow(1/n*math.log(1/(1-pn)), 1/b)
+        fr_2 = fr_1/t
+        fr_3 = math.pow(fr_2, b)
+        fx = -((1/fr_3)-1)
 
-    w_1 = math.pow(1/n*math.log(1/(1-pn)), 1/b)
-    print(w_1)
-    w_2 = w_1/t
-    print(w_2)
-    w_3 = math.pow(w_2, b)
-    print(w_3)
-    fx = -((1/w_3)-1)
-    print(1-fx)
+        den = math.pow(math.log(1/(1-fx)), 1/b)
+        slope = x/den
 
-    den = math.pow(math.log(1/(1-fx)), 1/b)
-    slope = x/den
-
-    characteristic = str(math.floor(slope))
-    characteristic_hours = characteristic + " hours"
-    print(f"fx= {1-fx}")
-    print(f"Characteristic life = {characteristic_hours}")
+        characteristic = str(math.floor(slope))
+        characteristic_hours = characteristic + " hours"
+        print(f"fx= {1-fx}")
+        print(f"Characteristic life = {characteristic_hours}")
+        return slope
+    except ArithmeticError:
+        print("ArithmeticError: attempted to divide by zero or number is too large to represent.")
+    # except ValueError:
+    #     print("ValueError: received an inappropriate value.")
 
 print("1 - calculate test duration")
-print("2 - calculate confidence")
-print("3 - characteristic life")
+print("2 - characteristic life")
 choice = int(input())
 
 if choice == 1:
@@ -73,18 +82,6 @@ if choice == 2:
     print("Enter Weibull Slope (b):")
     b = float(input())
 
-    print("Enter characteristic life (0):")
-    charact_life = float(input())
-
-    find_confidence(x, b, charact_life)
-
-if choice == 3:
-    print("Enter goal life (x):")
-    x = float(input())
-
-    print("Enter Weibull Slope (b):")
-    b = float(input())
-
     print("Enter number of samples (n):")
     n = float(input())
 
@@ -94,5 +91,9 @@ if choice == 3:
     print("Enter test duration (t):")
     t = float(input())
 
-    find_characteristic (x, b, n, pn, t)
+    charact_life = find_characteristic(x, b, n, pn, t)
+    # if (charact_life):
+    #     print("Confidence:")
+    #     find_confidence(x, b, charact_life)
+
 

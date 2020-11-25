@@ -4,6 +4,8 @@ import numpy
 # Daryna Kovyrina
 # QITTO3 p.18
 # Theories of Weibull Distribution
+
+# p.19
 def find_weibull (x, slope_weibull, charact_life):
     weibull = 1 - math.exp(-math.pow((x/charact_life), slope_weibull))
     weibull_percents = str(round(weibull*100, 2)) + "%"
@@ -12,11 +14,11 @@ def find_weibull (x, slope_weibull, charact_life):
 
 def find_weibull_ln (fx, slope_weibull, charact_life):
 
-    w_1 = slope_weibull * (math.log(charact_life))
-    w_2 = math.log(1/(1-fx))
-    w_3 = math.log(w_2)
+    fr_1 = slope_weibull * (math.log(charact_life))
+    fr_2 = math.log(1/(1-fx))
+    fr_3 = math.log(fr_2)
 
-    weibull = math.exp((1/slope_weibull) * (w_3 + w_1))
+    weibull = math.exp((1/slope_weibull) * (fr_3 + fr_1))
     weibull = str(round(weibull, 5))
     weibull_percents = weibull + "%"
     print(f"x = {weibull_percents}")
