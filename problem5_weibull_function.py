@@ -1,10 +1,12 @@
 import math
 import numpy
 
+# Daryna Kovyrina
+# QITTO3 p.18
 # Theories of Weibull Distribution
 def find_weibull (x, slope_weibull, charact_life):
     weibull = 1 - math.exp(-math.pow((x/charact_life), slope_weibull))
-    weibull_percents = str(round(weibull*100, 5)) + "%"
+    weibull_percents = str(round(weibull*100, 2)) + "%"
     print(f"f(x) = {weibull_percents}")
     return weibull
 
@@ -20,11 +22,14 @@ def find_weibull_ln (fx, slope_weibull, charact_life):
     print(f"x = {weibull_percents}")
 
 print("--  Parameters  --")
-print("Enter Expected Minimum:")
+print("x0 = Expected minimum value of x")
+print("b = Slope of Weibull distribution")
+print("0 = Characteristic life")
+print("x0:")
 x = float(input())
-print("Enter Slope of Weibull distribution:")
+print("b:")
 slope_weibull = float(input())
-print("Enter Characteristic life:")
+print("0:")
 charact_life = float(input())
 
 w = find_weibull(x, slope_weibull, charact_life)
