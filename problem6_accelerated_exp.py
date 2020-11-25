@@ -27,8 +27,7 @@ def find_confidence (x, b, charact_life):
 
     fx = 1 - math.e(-math.pow(x/charact_life, b))
 
-    fx = str(round(fx, 5))
-    fx_perecent = fx + " %"
+    fx_perecent = str(round(fx, 5)) + " %"
     print(fx_perecent)
     return fx
 
@@ -49,8 +48,8 @@ def find_characteristic (x, b, n, pn, t):
         return slope
     except ArithmeticError:
         print("ArithmeticError: attempted to divide by zero or number is too large to represent.")
-    # except ValueError:
-    #     print("ValueError: received an inappropriate value.")
+    except ValueError:
+        print("ValueError: received an inappropriate value.")
 
 print("1 - calculate test duration")
 print("2 - characteristic life")
@@ -92,8 +91,8 @@ if choice == 2:
     t = float(input())
 
     charact_life = find_characteristic(x, b, n, pn, t)
-    # if (charact_life):
-    #     print("Confidence:")
-    #     find_confidence(x, b, charact_life)
+    if (charact_life):
+        print("Confidence:")
+        find_confidence(x, b, charact_life)
 
 

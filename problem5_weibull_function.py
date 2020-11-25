@@ -7,21 +7,31 @@ import numpy
 
 # p.19
 def find_weibull (x, slope_weibull, charact_life):
-    weibull = 1 - math.exp(-math.pow((x/charact_life), slope_weibull))
-    weibull_percents = str(round(weibull*100, 2)) + "%"
-    print(f"f(x) = {weibull_percents}")
-    return weibull
+    try:
+        weibull = 1 - math.exp(-math.pow((x/charact_life), slope_weibull))
+        weibull_percents = str(round(weibull*100, 2)) + "%"
+        print(f"f(x) = {weibull_percents}")
+        return weibull
+    except ArithmeticError:
+        print("ArithmeticError: attempted to divide by zero or number is too large to represent.")
+    except ValueError:
+        print("ValueError: received an inappropriate value.")
 
 def find_weibull_ln (fx, slope_weibull, charact_life):
+    try:
+        fr_1 = slope_weibull * (math.log(charact_life))
+        fr_2 = math.log(1/(1-fx))
+        fr_3 = math.log(fr_2)
 
-    fr_1 = slope_weibull * (math.log(charact_life))
-    fr_2 = math.log(1/(1-fx))
-    fr_3 = math.log(fr_2)
-
-    weibull = math.exp((1/slope_weibull) * (fr_3 + fr_1))
-    weibull = str(round(weibull, 5))
-    weibull_percents = weibull + "%"
-    print(f"x = {weibull_percents}")
+        weibull = math.exp((1/slope_weibull) * (fr_3 + fr_1))
+        weibull = str(round(weibull, 5))
+        weibull_percents = weibull + "%"
+        print(f"x = {weibull_percents}")
+        return weibull
+    except ArithmeticError:
+        print("ArithmeticError: attempted to divide by zero or number is too large to represent.")
+    except ValueError:
+        print("ValueError: received an inappropriate value.")
 
 print("--  Parameters  --")
 print("x0 = Expected minimum value of x")
