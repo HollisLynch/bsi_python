@@ -1,3 +1,7 @@
+# "Relationship among Size,Confidence,Reliability"
+# Estimate the confidance level
+# Dmytro Yurchenko
+
 import math
 
 print("Enter Reliability at confidence:")

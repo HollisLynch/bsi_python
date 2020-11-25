@@ -1,3 +1,7 @@
+# "Relationship among Size,Confidence,Reliability"
+# Estimate R and MMBF
+# Dmytro Yurchenko
+
 import math
 
 print("Enter Cumulative Fault Frequency:")
